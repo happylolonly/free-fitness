@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Nav from "../components/nav";
+import Nav from "../components/Nav";
 import Link from "next/link";
 
 const Home = () => (
@@ -10,9 +10,29 @@ const Home = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <Nav />
+    {/* <Nav /> */}
 
-    <Link href="/search">ссылка</Link>
+    <h3>Бесплатные фитнес мероприятия в Минске</h3>
+
+    <Link href="/search">Смотреть мероприятия</Link>
+
+    <h3>Наши группы</h3>
+    <ul>
+      {[
+        {
+          link: "https://vk.com/free_fitness_minsk",
+          text: "vk"
+        }
+      ].map(({ link, text }) => {
+        return (
+          <li key={link}>
+            <a href={link} target="_blank">
+              {text}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
 
     <style jsx>{`
       .hero {
