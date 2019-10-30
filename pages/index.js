@@ -13,17 +13,17 @@ const Home = () => (
 
     <h3>Бесплатные фитнес мероприятия в Минске</h3>
 
-    <a href="/search" as="/search">
+    <Link href="/search" as="/search">
       Смотреть мероприятия
-    </a>
+    </Link>
 
     <h3>Наши группы</h3>
     <ul>
       {[
         {
-          link: "https://vk.com/free_fitness_minsk",
-          text: "vk"
-        }
+          link: 'https://vk.com/free_fitness_minsk',
+          text: 'vk',
+        },
       ].map(({ link, text }) => {
         return (
           <li key={link}>
