@@ -1,0 +1,8 @@
+{
+    "env": {},
+    "build": {
+        "env": {
+            "GTM_KEY": "GTM-WB72JNZ"
+        }
+    }
+}
