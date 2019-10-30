@@ -50,7 +50,6 @@ const Search = props => {
           const { id, text, date, from_id, comments, attachments } =
             post.text || post.attachments ? post : post.copy_history[0];
 
-          console.log(attachments);
           const image =
             attachments &&
             attachments
