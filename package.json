@@ -18,6 +18,8 @@
     "vk-io": "^4.0.0-rc.22"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.6.0"
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "dotenv-flow-webpack": "^1.0.0",
+    "dotenv-webpack": "^1.7.0"
   }
 }
