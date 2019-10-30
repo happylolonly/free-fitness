@@ -4,6 +4,7 @@ import axios from "axios";
 import Nav from "../../components/Nav";
 import "./Search.scss";
 import moment from "moment";
+import Head from 'next/head';
 
 const Search = props => {
   const [posts, setPosts] = useState([]);
@@ -29,6 +30,9 @@ const Search = props => {
 
   return (
     <div className="search-page">
+      <Head>
+        <title>Бесплатные фитнес мероприятия</title>
+      </Head>
       <Nav />
 
       <h3>Мероприятия</h3>

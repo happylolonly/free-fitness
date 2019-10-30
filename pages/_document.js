@@ -1,10 +1,4 @@
-// _document is only rendered on the server side and not on the client side
-// Event handlers like onClick can't be added to this file
-
-// ./pages/_document.js
-import Document, { Html, Head, Main, NextScript } from "next/document";
-
-const isProduction = process.env.NODE_ENV === "production";
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -16,6 +10,27 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          {/* <title>Бесплатный фитнес</title> */}
+          <meta charSet="utf-8" />
+          <link rel="shortcut icon" href="/images/favicon.ico" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="#31607B" />
+
+          <meta name="description" content="Все бесплатные фитнес мероприятия в одном месте!" />
+          <meta
+            name="keywords"
+            content="бесплатный фитнес, бесплатные тренировки в минске, йога, пилатес, танцы, степ, аэробика, воркаут"
+          />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content="Бесплатный фитнес" />
+          <meta
+            property="og:description"
+            content="Все бесплатные фитнес мероприятия в одном месте!"
+          />
+          {/* <meta property="og:url" content="https://thehoop.us" /> */}
+          <meta property="og:image" content="/images/favicon.ico" />
+
           {/* <!-- Google Tag Manager --> */}
           <script
             dangerouslySetInnerHTML={{
@@ -25,7 +40,7 @@ class MyDocument extends Document {
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
                 })(window,document,'script','dataLayer', '${process.env.GTM_KEY}')
-            `
+            `,
             }}
           />
           {/* <!-- End Google Tag Manager --> */}
@@ -38,7 +53,7 @@ class MyDocument extends Document {
               src={`https://www.googletagmanager.com/ns.html?id=${process.env.GTM_KEY}`}
               height="0"
               width="0"
-              style={{ display: "none", visibility: "hidden" }}
+              style={{ display: 'none', visibility: 'hidden' }}
             ></iframe>
           </noscript>
           {/* <!-- End Google Tag Manager (noscript) --> */}

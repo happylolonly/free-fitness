@@ -1,13 +1,12 @@
-import React from "react";
-import Head from "next/head";
-import Nav from "../components/Nav";
-import Link from "next/link";
+import React from 'react';
+import Head from 'next/head';
+import Nav from '../components/Nav';
+import Link from 'next/link';
 
 const Home = () => (
   <div>
     <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
+      <title>Бесплатный фитнес</title>
     </Head>
 
     {/* <Nav /> */}
