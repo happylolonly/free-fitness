@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import axios from "axios";
-import Nav from "../../components/Nav";
-import Slider from "../../components/Slider/Slider";
-import "./Search.scss";
-import moment from "moment";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
+import Nav from '../../components/Nav';
+import Slider from '../../components/Slider/Slider';
+import './Search.scss';
+import moment from 'moment';
 import Head from 'next/head';
+import Event from './Event/Event';
 
 const Search = props => {
   const [posts, setPosts] = useState([]);
   const [count, setCount] = useState(null);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   useEffect(() => {
     getPosts();
   }, [search]);
 
   async function getPosts() {
     try {
-      const responce = await axios.get("/api/posts", {
+      const responce = await axios.get('/api/events', {
         params: {
-          search
-        }
+          search,
+        },
       });
       setPosts(responce.data.items);
       setCount(responce.data.count);
@@ -52,48 +53,29 @@ const Search = props => {
       </div>
       <div className="events">
         {posts.map(post => {
-          const { id, text, date, from_id, comments, attachments } =
+          const { id, text, date, from_id, owner_id, comments, attachments } =
             post.text || post.attachments ? post : post.copy_history[0];
           const image =
             attachments &&
             attachments
-              .find(att => att.type === "photo")
-              ?.photo.sizes.find(size => size.type === "x")?.url;
+              .find(att => att.type === 'photo')
+              ?.photo.sizes.find(size => size.type === 'x')?.url;
 
           const link = `https://vk.com/free_fitness_minsk?w=wall${from_id}_${id}`;
           const commentsCount = (comments && comments.count) || 0;
-
-          if ([5138, 5139].includes(id)) {
-            return;
-          }
+          const serverId = `${owner_id}_${id}`;
 
           return (
-            <div key={link} className="event">
-              <header>
-                <span>
-                  Дата создания:{" "}
-                  {moment(date * 1000).format("MM:HH DD.MM.YYYY")}
-                </span>
-                <a href={link} target="_blank">
-                  Источник
-                </a>
-              </header>
-              <p>{text}</p>
-              {/* {image.length > 0 ? (
-                <Slider images={image} />
-              ) : (
-                image && <img src={image} />
-              )} */}
-              {image && <img src={image} />}
-
-              <button
-                onClick={() => {
-                  window.open(link);
-                }}
-              >
-                Комментировать {commentsCount !== 0 && `(${commentsCount})`}
-              </button>
-            </div>
+            <Event
+              key={link}
+              serverId={serverId}
+              link={link}
+              image={image}
+              getPosts={getPosts}
+              commentsCount={commentsCount}
+              text={text}
+              date={date}
+            />
           );
         })}
       </div>
