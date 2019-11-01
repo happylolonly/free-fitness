@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import Nav from "../../components/Nav";
+import Slider from "../../components/Slider/Slider";
 import "./Search.scss";
 import moment from "moment";
 
@@ -49,7 +50,6 @@ const Search = props => {
         {posts.map(post => {
           const { id, text, date, from_id, comments, attachments } =
             post.text || post.attachments ? post : post.copy_history[0];
-
           const image =
             attachments &&
             attachments
@@ -75,7 +75,11 @@ const Search = props => {
                 </a>
               </header>
               <p>{text}</p>
-
+              {/* {image.length > 0 ? (
+                <Slider images={image} />
+              ) : (
+                image && <img src={image} />
+              )} */}
               {image && <img src={image} />}
 
               <button
