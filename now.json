@@ -1,5 +1,7 @@
 {
-    "env": {},
+    "env": {
+        "MONGODB_URI": "@mongodb_uri"
+    },
     "build": {
         "env": {
             "GTM_KEY": "GTM-WB72JNZ"
