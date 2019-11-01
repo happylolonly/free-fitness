@@ -1,0 +1,33 @@
+.landing {
+    min-height: 100vh;
+    background-image: url('./images/26178\ 1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
+
+    .intro {
+        position: absolute;
+        z-index: 1;
+        padding-left: 10%;
+        color: white;
+
+
+        h1 {
+            font-size: 90px;
+        }
+
+    }
+
+    .cube {
+        position: absolute;
+        top: -111.87px;
+        left: -25%;
+        z-index: 0;
+        width: 100vh;
+        height: 100vh;
+        border-radius: 10px;
+        background: linear-gradient(125.51deg, #FC7F5D 12.01%, rgba(248, 37, 75, 0.7) 99.84%);
+        transform: rotate(44.85deg);
+    }
+}
