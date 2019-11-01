@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './Event.scss';
@@ -15,7 +15,12 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts }) =
     }
   }
 
-  const isAdmin = localStorage.getItem('admin');
+  const [isAdmin, setA] = useState(false);
+
+  useEffect(() => {
+    setA(localStorage.getItem('admin'));
+  }, []);
+
   return (
     <div className="event">
       <header>
