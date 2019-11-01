@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon --watch ./server ./server",
     "build": "next build",
-    "start": "next start"
+    "start": "node ./server"
   },
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.10.27",
