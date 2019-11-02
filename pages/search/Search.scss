@@ -1,7 +1,6 @@
 .search-page {
-    h3 {
-        text-align: center;
-    }
+    min-height: 100vh;
+    background: #eceff0;
 
     .header {
         display: flex;
@@ -10,9 +9,26 @@
         margin: 40px 0;
 
         input {
+            padding: 10px 20px;
             min-width: 200px;
             height: 20px;
+            outline: none;
+            border: 2px solid #fa706c;
+            border-radius: 4px;
+            background-color: transparent;
+            color: #fa706c;
+            font-weight: bold;
+
+
+            &::placeholder {
+                color: #fa706c;
+            }
         }
+    }
+
+    .events {
+        padding: 0 10px;
+
     }
 
 }

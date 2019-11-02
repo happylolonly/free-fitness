@@ -1,9 +1,10 @@
 .event {
     margin: 25px auto;
-    padding: 25px;
+    padding: 40px 45px;
     max-width: 680px;
     background-color: white;
     box-shadow: 0 0 5px rgb(155, 144, 144);
+
 
     header {
         display: flex;
@@ -16,6 +17,10 @@
         word-break: break-word;
     }
 
+    .source {
+        color: #fa706c;
+    }
+
     img {
         display: block;
         margin: 10px auto;
@@ -26,7 +31,14 @@
         display: block;
         margin: 10px auto;
         margin-top: 30px;
-        height: 30px;
+        color: #fa706c;
+        text-transform: none;
+
+        &:hover {
+            text-decoration: underline;
+            opacity: 1;
+        }
+
 
     }
 }

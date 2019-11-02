@@ -1,5 +1,6 @@
 import React from 'react';
 import App from 'next/app';
+import './_app.scss';
 
 class MyApp extends App {
   // Only uncomment this method if you have blocking data requirements for

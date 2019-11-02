@@ -49,10 +49,10 @@ const Search = props => {
           value={search}
         />
         <br />
-        {count && <span>Найдено мероприятий {count}</span>}
+        {!!count ? <span>Найдено мероприятий: {count}</span> : <span>Ничего не найдено</span>}
       </div>
       <div className="events">
-        {posts.map(post => {
+        {posts.map((post, i) => {
           const { id, text, date, from_id, owner_id, comments, attachments } =
             post.text || post.attachments ? post : post.copy_history[0];
           const image =
@@ -67,7 +67,7 @@ const Search = props => {
 
           return (
             <Event
-              key={link}
+              key={i}
               serverId={serverId}
               link={link}
               image={image}
