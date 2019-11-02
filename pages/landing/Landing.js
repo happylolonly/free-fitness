@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 import './Landing.scss';
 import Header from './Header/Header';
+import Button from '../../components/Button/Button';
 
 const Landing = props => {
   return (
@@ -15,7 +16,7 @@ const Landing = props => {
         <title>Бесплатный фитнес</title>
       </Head>
 
-      <Header />
+      {/* <Header /> */}
 
       <div className="cube"></div>
 
@@ -23,9 +24,12 @@ const Landing = props => {
         <h1>
           Free <br /> fitness
         </h1>
-        <h3>У тебя появилась уникальная возможность заниматься спортом совершенно бесплатно</h3>
+        <h3>
+          У тебя появилась уникальная <br /> возможность заниматься <br /> спортом совершенно
+          бесплатно
+        </h3>
         <Link href="/search">
-          <button>Подробнее</button>
+          <Button>Начать</Button>
         </Link>
       </div>
     </div>
