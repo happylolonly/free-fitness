@@ -48,6 +48,7 @@ const Search = props => {
           placeholder="Поиск..."
           value={search}
         />
+
         <br />
         {!!count ? <span>Найдено мероприятий: {count}</span> : <span>Ничего не найдено</span>}
       </div>
