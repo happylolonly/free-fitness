@@ -4,6 +4,10 @@ const schema = mongoose.Schema;
 const eventModel = new schema({
   id: { type: String, required: true },
   status: { type: String },
+  date: {
+    type: Array,
+    of: Date,
+  },
 });
 
 // module.exports = eventModel;

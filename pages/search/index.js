@@ -85,6 +85,7 @@ const Search = props => {
               commentsCount={commentsCount}
               text={text}
               date={date}
+              eventDate={(post.serverData && post.serverData.date) || []}
             />
           );
         })}

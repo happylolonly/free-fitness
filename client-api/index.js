@@ -5,3 +5,10 @@ export function hidePost(id) {
     id,
   });
 }
+
+export function addDate(id, date) {
+  axios.post('/api/events/date', {
+    id,
+    date,
+  });
+}
