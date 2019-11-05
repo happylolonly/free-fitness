@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './Event.scss';
-import { hidePost } from '../../../api/index';
+import { hidePost } from '../../../client-api/index';
 import Button from '../../../components/Button/Button';
 
 const Event = ({ link, image, commentsCount, text, date, serverId, getPosts }) => {
