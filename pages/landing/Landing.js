@@ -18,19 +18,19 @@ const Landing = props => {
 
       {/* <Header /> */}
 
-      <div className="cube"></div>
-
-      <div className="intro">
-        <h1>
-          Free <br /> fitness
-        </h1>
-        <h3>
-          У тебя появилась уникальная <br /> возможность заниматься <br /> спортом совершенно
-          бесплатно
-        </h3>
-        <Link href="/search">
-          <Button>Начать</Button>
-        </Link>
+      <div className="cube">
+        <div className="intro">
+          <h1>
+            Free <br /> fitness
+          </h1>
+          <h3>
+            У тебя появилась уникальная <br /> возможность заниматься <br /> спортом совершенно
+            бесплатно
+          </h3>
+          <Link href="/search">
+            <Button>Начать</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
