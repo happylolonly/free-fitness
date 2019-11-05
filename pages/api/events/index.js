@@ -72,10 +72,13 @@ export default async (req, res) => {
 
     t.items = newT;
 
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = 200;
+
     res.send(JSON.stringify(t));
   } catch (error) {
     console.log(error);
-    res.send(JSON.stringify(t));
+    res.status(500).send(JSON.stringify(t));
   }
 };
 
