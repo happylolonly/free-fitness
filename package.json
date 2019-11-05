@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "nodemon --watch ./server ./server",
+    "dev": "next dev",
     "build": "next build",
-    "start": "node ./server"
+    "start": "next start"
   },
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.10.27",

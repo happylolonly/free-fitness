@@ -1,13 +1,33 @@
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+// const router = express.Router();
 const Event = require('../models/event');
 
 const { VK } = require('vk-io');
+
+// const Event = Even;
 
 const vk = new VK({
   token:
     process.env.TOKEN || '4e82e2084e82e2084e82e208a74ee4c61044e824e82e208151f9677d3d62856454ed2e6',
 });
+
+let cachedDb = null;
+
+const mongoose = require('mongoose');
+
+console.log('ds', process.env.MONGODB_URI);
+
+async function dbConnect() {
+  if (cachedDb) {
+    return;
+  }
+  try {
+    cachedDb = await mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+    // Even.init();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 async function run(search, limit, offset) {
   const response = await vk.api.wall.search({
@@ -31,7 +51,11 @@ async function get(limit, offset) {
   return response;
 }
 
-router.get('/', async (req, res) => {
+export default async (req, res) => {
+  await dbConnect();
+
+  // const Event = mongoose.model('events');
+
   const { search, limit = 30, offset = 0 } = req.query;
   const t = search ? await run(search, limit, offset) : await get(limit, offset);
 
@@ -53,28 +77,6 @@ router.get('/', async (req, res) => {
     console.log(error);
     res.send(JSON.stringify(t));
   }
-});
+};
 
-router.post('/hide', async (req, res) => {
-  console.log('here');
-  debugger;
-  const { id } = req.body;
-  console.log(id);
-
-  try {
-    await Event.update(
-      { id: id },
-      {
-        status: 'hidden',
-      },
-      { upsert: true }
-    );
-
-    res.send('ok');
-  } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
-  }
-});
-
-module.exports = router;
+// module.exports = router;
