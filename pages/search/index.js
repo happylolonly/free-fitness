@@ -12,11 +12,13 @@ const Search = props => {
   const [posts, setPosts] = useState([]);
   const [count, setCount] = useState(null);
   const [search, setSearch] = useState('');
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     getPosts();
   }, [search]);
 
   async function getPosts() {
+    setLoading(true);
     try {
       const responce = await axios.get('/api/events', {
         params: {
@@ -28,6 +30,7 @@ const Search = props => {
     } catch (error) {
       console.log(error);
     }
+    setLoading(false);
   }
 
   return (
@@ -50,7 +53,13 @@ const Search = props => {
         />
 
         <br />
-        {!!count ? <span>Найдено мероприятий: {count}</span> : <span>Ничего не найдено</span>}
+        {isLoading ? (
+          <span>Загрузка...</span>
+        ) : !!count ? (
+          <span>Найдено мероприятий: {count}</span>
+        ) : (
+          <span>Ничего не найдено</span>
+        )}
       </div>
       <div className="events">
         {posts.map((post, i) => {
