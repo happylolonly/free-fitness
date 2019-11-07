@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 import './Landing.scss';
 import Header from './Header/Header';
-import Button from '../../components/Button/Button';
+import Button from '../../components/common/Button/Button';
 
 const Landing = props => {
   return (

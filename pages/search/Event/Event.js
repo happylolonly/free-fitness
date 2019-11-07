@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './Event.scss';
 import { hidePost, addDate } from '../../../client-api/index';
-import Button from '../../../components/Button/Button';
+import Button from '../../../components/common/Button/Button';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
 
 const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eventDate = [] }) => {
@@ -12,7 +12,6 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
   // }
 
   const [eventDate2, setEventDate] = useState(eventDate[0] ? new Date(eventDate[0]) : null);
-  console.error(eventDate2);
   async function hideEvent() {
     try {
       await hidePost(serverId);
