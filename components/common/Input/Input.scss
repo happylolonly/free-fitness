@@ -1,0 +1,19 @@
+.input {
+    margin: 10px 0;
+
+    .input-inner {
+        display: flex;
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            outline: none;
+            // border: none;
+            font-size: 16px;
+
+            &::placeholder {
+                color: #aaa;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+// @import 'constants/styles/mixins.scss';
+
+.textarea {
+
+    label {
+        margin-top: 12px;
+        min-width: 30px;
+        width: 50px;
+        font-weight: bold;
+    }
+
+    textarea {
+        padding: 15px;
+        width: 100%;
+        outline: none;
+        font-size: 16px;
+        resize: none;
+
+        // @include border-window;
+    }
+
+    // &::placeholder {
+    //   color: #FFFFFF;
+    // }
+
+}
