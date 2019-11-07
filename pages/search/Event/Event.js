@@ -116,9 +116,9 @@ const Event = ({
 
           {location && <span>Местоположение: {location}</span>}
         </div>
-        <a href={link} target="_blank" className="source">
+        {/* <a href={link} target="_blank" className="source">
           Источник
-        </a>
+        </a> */}
       </header>
       <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
       {/* {image.length > 0 ? (
