@@ -6,7 +6,7 @@ import { hidePost, addDate } from '../../../client-api/index';
 import Button from '../../../components/Button/Button';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
 
-const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eventDate }) => {
+const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eventDate = [] }) => {
   // if (!Array.isArray(eventDate)) {
   //   debugger;
   // }
