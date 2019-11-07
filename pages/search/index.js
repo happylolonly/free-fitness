@@ -69,8 +69,11 @@ const Search = props => {
       </div>
       <div className="events">
         {posts.map((post, i) => {
-          const { id, text, date, from_id, owner_id, comments, attachments } =
-            post.text || post.attachments ? post : post.copy_history[0];
+          // if (i > 2) {
+          //   return null;
+          // }
+
+          const { id, text, date, from_id, owner_id, comments, attachments } = post;
           const image =
             attachments &&
             attachments

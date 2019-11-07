@@ -2,6 +2,8 @@
 // const router = express.Router();
 const Event = require('../models/event');
 
+// const Event = Even;
+
 let cachedDb = null;
 
 const mongoose = require('mongoose');
@@ -20,25 +22,12 @@ async function dbConnect() {
 
 export default async (req, res) => {
   await dbConnect();
-
-  const { date, id } = req.body;
-
-  if (!Array.isArray(date)) {
-    res.status(410).send('Wrong format');
-  }
-
-  console.log(date);
+  //   const { id } = req.body;
 
   try {
-    await Event.update(
-      { vkId: id },
-      {
-        date: date.map(item => Date.parse(new Date(item)) || null), // fix
-      },
-      { upsert: true }
-    );
+    const events = await Event.find({ status: 'hidden' });
 
-    res.status(200).send('ok');
+    res.status(200).send(events);
   } catch (error) {
     console.log(error);
     res.status(500).send(error);

@@ -57,8 +57,8 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
     <div className="event">
       <header>
         <div className="time">
-          <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MM.YYYY')}</span>
-          {eventDate2 && <span>Дата проведения: {moment(eventDate2).format('DD.MM.YYYY')}</span>}
+          {/* <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MMM.YYYY')}</span> */}
+          {eventDate2 && <span>Дата проведения: {moment(eventDate2).format('D MMMM YYYY')}</span>}
         </div>
         <a href={link} target="_blank" className="source">
           Источник

@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
-const eventModel = new schema({
-  id: { type: String, required: true },
-  status: { type: String },
-  date: {
-    type: Array,
-    of: Date,
+const eventModel = new schema(
+  {
+    vkId: { type: String },
+    status: { type: String },
+    date: {
+      type: Array,
+      of: Date,
+    },
+    location: { type: String },
+    title: { type: String },
+    text: { type: String },
   },
-});
+  { timestamps: { createdAt: 'createdAt' } }
+);
 
 // module.exports = eventModel;
 let model;

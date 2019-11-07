@@ -61,16 +61,30 @@ export default async (req, res) => {
 
   try {
     // TODO: refactor
-    const events = await Event.find({ status: 'hidden' });
+    const events = await Event.find({});
+
+    const mergedEvents = [];
 
     // remove events with status 'hidden'
-    const newT = t.items.filter(({ owner_id, id }) => {
-      return !events.find(event => {
-        return `${owner_id}_${id}` === event.id;
+    const newT = t.items.forEach(vkEvent => {
+      const vkE = vkEvent.copy_history ? vkEvent.copy_history[0] : vkEvent;
+      const { owner_id, id } = vkE;
+      const dbEvent = events.find(event => {
+        return `${owner_id}_${id}` === event.vkId;
       });
+
+      if (dbEvent) {
+        if (dbEvent.status === 'hidden') {
+          return;
+        }
+
+        vkE.serverData = dbEvent;
+      }
+
+      mergedEvents.push(vkE);
     });
 
-    t.items = newT;
+    t.items = mergedEvents;
 
     res.setHeader('Content-Type', 'application/json');
     res.statusCode = 200;

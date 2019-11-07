@@ -27,7 +27,7 @@ export default async (req, res) => {
 
   try {
     await Event.update(
-      { id: id },
+      { vkId: id },
       {
         status: 'hidden',
       },
