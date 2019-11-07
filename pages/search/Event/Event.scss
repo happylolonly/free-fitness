@@ -22,7 +22,6 @@
 
     p {
         margin: 30px 0;
-        text-align: center;
         word-break: break-word;
     }
 
@@ -49,5 +48,9 @@
         }
 
 
+    }
+
+    @media (max-width: 480px) {
+        padding: 20px;
     }
 }
