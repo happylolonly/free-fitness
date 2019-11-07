@@ -21,22 +21,28 @@ async function dbConnect() {
 export default async (req, res) => {
   await dbConnect();
 
-  const { date, id } = req.body;
-
-  if (!Array.isArray(date)) {
-    res.status(410).send('Wrong format');
-  }
+  const { data, id } = req.body;
+  const { location, date } = data;
 
   console.log(date);
 
+  const obj = {};
+
+  if (date) {
+    if (!Array.isArray(date)) {
+      res.status(410).send('Wrong format');
+      return;
+    }
+
+    obj.date = date.map(item => Date.parse(new Date(item)) || null); // fix
+  }
+
+  if (location) {
+    obj.location = location;
+  }
+
   try {
-    await Event.update(
-      { vkId: id },
-      {
-        date: date.map(item => Date.parse(new Date(item)) || null), // fix
-      },
-      { upsert: true }
-    );
+    await Event.update({ vkId: id }, obj, { upsert: true });
 
     res.status(200).send('ok');
   } catch (error) {

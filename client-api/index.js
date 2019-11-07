@@ -6,10 +6,10 @@ export function hidePost(id) {
   });
 }
 
-export function addDate(id, date) {
+export function addDate(id, data) {
   axios.post('/api/events/date', {
     id,
-    date,
+    data,
   });
 }
 
