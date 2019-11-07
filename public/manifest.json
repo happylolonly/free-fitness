@@ -3,11 +3,10 @@
   "short_name": "Free fitness",
   "theme_color": "#fc805d",
   "background_color": "#2196f3",
-  "display": "browser",
+  "display": "fullscreen",
   "Scope": "/",
   "start_url": "/?pwa",
-  "icons": [
-    {
+  "icons": [{
       "src": "images/icons/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
