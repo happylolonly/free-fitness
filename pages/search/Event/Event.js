@@ -33,6 +33,7 @@ const Event = ({
     }
   }
 
+  const formattedEntry = text.replace(/\n/g, '<br />');
 
   const [isAdmin, setA] = useState(false);
   const [location, setLocation] = useState(location2);
@@ -119,7 +120,7 @@ const Event = ({
           Источник
         </a>
       </header>
-      <p>{text}</p>
+      <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
