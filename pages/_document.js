@@ -16,6 +16,8 @@ class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#fc805d" />
 
+          <link rel="manifest" href="/manifest.json" />
+
           <meta name="description" content="Все бесплатные фитнес мероприятия в одном месте!" />
           <meta
             name="keywords"
