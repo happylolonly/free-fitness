@@ -7,25 +7,29 @@ import './Search.scss';
 import moment from 'moment';
 import Head from 'next/head';
 import Event from './Event/Event';
+const OFFSET = 10;
 
 const Search = props => {
   const [posts, setPosts] = useState([]);
   const [count, setCount] = useState(null);
   const [search, setSearch] = useState('');
   const [isLoading, setLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+
   useEffect(() => {
     getPosts();
-  }, [search]);
+  }, [search, offset]);
 
-  async function getPosts() {
+  async function getPosts(replace) {
     setLoading(true);
     try {
       const responce = await axios.get('/api/events', {
         params: {
           search,
+          offset,
         },
       });
-      setPosts(responce.data.items);
+      setPosts(replace ? responce.data.items : [...posts, ...responce.data.items]);
       setCount(responce.data.count);
     } catch (error) {
       console.log(error);
@@ -47,6 +51,8 @@ const Search = props => {
           type="text"
           onChange={event => {
             setSearch(event.target.value);
+            setPosts([]);
+            setOffset(0);
           }}
           placeholder="Поиск..."
           value={search}
@@ -90,6 +96,17 @@ const Search = props => {
           );
         })}
       </div>
+
+      {count - (offset + OFFSET) >= 0 && (
+        <Button
+          className="load-more"
+          onClick={() => {
+            setOffset(offset + OFFSET);
+          }}
+        >
+          Загрузить еще
+        </Button>
+      )}
     </div>
   );
 };
