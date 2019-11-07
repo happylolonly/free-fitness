@@ -93,6 +93,7 @@ const Search = props => {
           // }
 
           const { id, text, date, from_id, owner_id, comments, attachments } = post;
+          const { location } = post.serverData || {};
           const image =
             attachments &&
             attachments
@@ -114,6 +115,7 @@ const Search = props => {
               text={text}
               date={date}
               eventDate={(post.serverData && post.serverData.date) || []}
+              location={location}
             />
           );
         })}

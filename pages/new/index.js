@@ -66,7 +66,7 @@ const New = props => {
         Твое мероприятие сразу же появится на сайте;)
       </p>
 
-      <br />
+      {/* <br />
       <br />
       <br />
       <br />
@@ -90,13 +90,13 @@ const New = props => {
           error={form.text.error}
         />
 
-        {/* <Textarea 
+        <Textarea 
         title="Ссылка на картинку"
         value={form.text.value}
         name="image"
         onChange={onChange}
         error={form.text.error}
-        /> */}
+        />
 
         <Input
           label="Место проведения"
@@ -107,7 +107,7 @@ const New = props => {
         />
 
         <Button onClick={create}>Сохранить</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

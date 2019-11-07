@@ -6,13 +6,24 @@ import { hidePost, addDate } from '../../../client-api/index';
 import Button from '../../../components/common/Button/Button';
 import { strictEqual } from 'assert';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
+import Input from '../../../components/common/Input/Input';
 
-const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eventDate = [] }) => {
+const Event = ({
+  link,
+  image,
+  commentsCount,
+  text = '',
+  date,
+  serverId,
+  location: location2,
+  getPosts,
+  eventDate = [],
+}) => {
   // if (!Array.isArray(eventDate)) {
   //   debugger;
   // }
 
-  const [eventDate2, setEventDate] = useState(eventDate[0] ? new Date(eventDate[0]) : null);
+  const [eventDates, setEventDates] = useState(eventDate);
   async function hideEvent() {
     try {
       await hidePost(serverId);
@@ -23,28 +34,67 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
     }
   }
 
+  const formattedEntry = text.replace(/\n/g, '<br />');
+
   const [isAdmin, setA] = useState(false);
+  const [location, setLocation] = useState(location2);
 
   useEffect(() => {
     setA(localStorage.getItem('admin'));
   }, []);
 
+  console.log(eventDates);
+
   function renderDateFields() {
     const DateTimePicker = require('react-datetime-picker').default; // TODO: async load
     return (
       <div>
-        <h5>Админка</h5>
+        <h3>Админка</h3>
 
-        <h3>Добавить дату к посту</h3>
-        <DateTimePicker
-          onChange={date => {
-            setEventDate(date);
+        <h5>Добавить дату к посту</h5>
+
+        {eventDates.map((date, i) => {
+          return (
+            <div key={date} className="date-item">
+              <DateTimePicker
+                onChange={date => {
+                  eventDates[i] = date;
+                  setEventDates([...eventDates]);
+                }}
+                value={new Date(date)}
+              />
+              <button
+                onClick={() => {
+                  eventDates.splice(i, 1);
+                  setEventDates([...eventDates]);
+                }}
+              >
+                Удалить
+              </button>
+            </div>
+          );
+        })}
+
+        <button
+          onClick={() => {
+            setEventDates([...eventDates, new Date()]);
           }}
-          value={eventDate2}
-        />
+        >
+          Добавить поле
+        </button>
+
+        <hr />
+
+        <h5>Добавить местоположение</h5>
+        <Input value={location} onChange={value => setLocation(value)} />
+
+        <hr />
         <button
           onClick={async () => {
-            await addDate(serverId, [eventDate2]);
+            await addDate(serverId, {
+              date: eventDates,
+              location,
+            });
             await getPosts();
             alert('сохранено');
           }}
@@ -100,13 +150,22 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
       <header>
         <div className="time">
           {/* <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MMM.YYYY')}</span> */}
-          {eventDate2 && <span>Дата проведения: {moment(eventDate2).format('D MMMM YYYY')}</span>}
+
+          {eventDates.map(date => {
+            return <span key={date}>Дата проведения: {moment(date).format('D MMMM YYYY')}</span>;
+          })}
+
+          {location && <span>Местоположение: {location}</span>}
         </div>
-        <a href={link} target="_blank" className="source">
+        {/* <a href={link} target="_blank" className="source">
           Источник
-        </a>
+        </a> */}
       </header>
+<<<<<<< HEAD
       <p>{MyComponent()}</p>
+=======
+      <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
+>>>>>>> 911c7e2efa8ac6d5e8750a9ebeab89cba7fff9c4
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
