@@ -4,6 +4,7 @@ import moment from 'moment';
 import './Event.scss';
 import { hidePost, addDate } from '../../../client-api/index';
 import Button from '../../../components/common/Button/Button';
+import { strictEqual } from 'assert';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
 
 const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eventDate = [] }) => {
@@ -54,6 +55,46 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
     );
   }
 
+  const newText = () => {
+    let str = text;
+    while (str.indexOf('http') !== -1) {
+      let start = str.indexOf('http');
+      let end = str.indexOf(' ', start + 'http'.length);
+      const findLink = str.substring(start, end);
+      const createLink = findLink.link(findLink);
+      const newStr = str.replace(findLink, createLink);
+      return newStr;
+    }
+
+    while (str.indexOf('www') !== -1) {
+      let start = str.indexOf('www');
+      let end = str.indexOf(' ', start + 'www'.length);
+      const findLink = str.substring(start, end);
+      const createLink = findLink.link(findLink);
+      const newStrTwo = str.replace(findLink, createLink);
+      return newStrTwo;
+    }
+
+    while (str.indexOf('+') !== -1) {
+      let start = str.indexOf('+');
+      let end = str.indexOf('', start + 13);
+      const findNumber = str.substring(start, end);
+      const createNumber = findNumber.link('tel:' + findNumber);
+      const numberInLink = str.replace(findNumber, createNumber);
+      return numberInLink;
+    }
+
+    return str;
+  };
+
+  function createMarkup() {
+    return { __html: newText() };
+  }
+
+  function MyComponent() {
+    return <div dangerouslySetInnerHTML={createMarkup()} />;
+  }
+
   return (
     <div className="event">
       <header>
@@ -65,7 +106,7 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
           Источник
         </a>
       </header>
-      <p>{text}</p>
+      <p>{MyComponent()}</p>
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
