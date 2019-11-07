@@ -3,6 +3,7 @@ const withCSS = require('@zeit/next-css');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const DotenvFlow = require('dotenv-flow-webpack');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
 require('dotenv').config();
 
@@ -20,6 +21,10 @@ module.exports = withCSS(
         new Dotenv({
           path: path.join(__dirname, '.env'),
           systemvars: true,
+        }),
+
+        new MomentLocalesPlugin({
+          localesToKeep: ['es-us', 'ru'],
         }),
       ];
 
