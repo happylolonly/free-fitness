@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Nav from '../../components/Nav';
-import Slider from '../../components/Slider/Slider';
 import './Search.scss';
-import moment from 'moment';
 import Head from 'next/head';
 import Event from './Event/Event';
+import Button from '../../components/common/Button/Button';
+
 const OFFSET = 10;
 
 const Search = props => {
@@ -36,6 +36,12 @@ const Search = props => {
     }
     setLoading(false);
   }
+
+  const [isAdmin, setA] = useState(false);
+
+  useEffect(() => {
+    setA(localStorage.getItem('admin'));
+  }, []);
 
   return (
     <div className="search-page">
@@ -67,6 +73,19 @@ const Search = props => {
           <span>Ничего не найдено</span>
         )}
       </div>
+
+      {isAdmin && (
+        <button
+          onClick={() => {
+            localStorage.removeItem('admin');
+            setA(false);
+            setPosts([]);
+            getPosts();
+          }}
+        >
+          снять права админа
+        </button>
+      )}
       <div className="events">
         {posts.map((post, i) => {
           // if (i > 2) {

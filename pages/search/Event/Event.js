@@ -30,9 +30,11 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
   }, []);
 
   function renderDateFields() {
-    const DateTimePicker = require('react-datetime-picker').default;
+    const DateTimePicker = require('react-datetime-picker').default; // TODO: async load
     return (
       <div>
+        <h5>Админка</h5>
+
         <h3>Добавить дату к посту</h3>
         <DateTimePicker
           onChange={date => {
@@ -43,8 +45,8 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
         <button
           onClick={async () => {
             await addDate(serverId, [eventDate2]);
+            await getPosts();
             alert('сохранено');
-            getPosts();
           }}
         >
           Сохранить
@@ -63,8 +65,6 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
         <a href={link} target="_blank" className="source">
           Источник
         </a>
-
-        {isAdmin && <Button onClick={hideEvent}>X</Button>}
       </header>
       <p>{text}</p>
       {/* {image.length > 0 ? (
@@ -84,6 +84,7 @@ const Event = ({ link, image, commentsCount, text, date, serverId, getPosts, eve
       </Button>
 
       {isAdmin && renderDateFields()}
+      {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
     </div>
   );
 };
