@@ -12,3 +12,9 @@ export function addDate(id, date) {
     date,
   });
 }
+
+export function createEvent(data) {
+  axios.post('/api/events/create', {
+    ...data,
+  });
+}
