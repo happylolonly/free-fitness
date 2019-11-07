@@ -1,6 +1,7 @@
 .search-page {
     min-height: 100vh;
     background: #eceff0;
+    padding-bottom: 40px;
 
     .header {
         display: flex;
@@ -28,6 +29,15 @@
 
     .events {
         padding: 0 10px;
+
+    }
+
+    .load-more {
+        margin: 20px auto 0px;
+        display: block;
+
+        border: 2px solid #fa706c;
+        color: #fa706c;
 
     }
 
