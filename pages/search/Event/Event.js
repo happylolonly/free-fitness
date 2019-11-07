@@ -161,11 +161,7 @@ const Event = ({
           Источник
         </a> */}
       </header>
-<<<<<<< HEAD
       <p>{MyComponent()}</p>
-=======
-      <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
->>>>>>> 911c7e2efa8ac6d5e8750a9ebeab89cba7fff9c4
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
