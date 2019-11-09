@@ -161,7 +161,8 @@ const Event = ({
           Источник
         </a> */}
       </header>
-      <p>{MyComponent()}</p>
+      {/* <p>{MyComponent()}</p> */}
+      <p>{formattedEntry}</p>
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
