@@ -162,7 +162,7 @@ const Event = ({
         </a> */}
       </header>
       {/* <p>{MyComponent()}</p> */}
-      <p>{formattedEntry}</p>
+      <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
