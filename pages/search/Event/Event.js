@@ -34,8 +34,6 @@ const Event = ({
     }
   }
 
-  const formattedEntry = text.replace(/\n/g, '<br />');
-
   const [isAdmin, setA] = useState(false);
   const [location, setLocation] = useState(location2);
 
@@ -43,14 +41,10 @@ const Event = ({
     setA(localStorage.getItem('admin'));
   }, []);
 
-  console.log(eventDates);
-
   function renderDateFields() {
     const DateTimePicker = require('react-datetime-picker').default; // TODO: async load
     return (
       <div>
-        <h3>Админка</h3>
-
         <h5>Добавить дату к посту</h5>
 
         {eventDates.map((date, i) => {
@@ -95,8 +89,8 @@ const Event = ({
               date: eventDates,
               location,
             });
-            await getPosts();
             alert('сохранено');
+            await getPosts(true);
           }}
         >
           Сохранить
@@ -105,83 +99,87 @@ const Event = ({
     );
   }
 
-  const newText = () => {
+  const replaceText = () => {
     let str = text;
-    while (str.indexOf('http') !== -1) {
-      let start = str.indexOf('http');
-      let end = str.indexOf(' ', start + 'http'.length);
-      const findLink = str.substring(start, end);
-      const createLink = findLink.link(findLink);
-      const newStr = str.replace(findLink, createLink);
-      return newStr;
+    // while (str.indexOf('+') !== -1) {
+    //   let start = str.indexOf('+');
+    //   let end = str.indexOf('', start + 13);
+    //   const findNumber = str.substring(start, end);
+    //   const createNumber = findNumber.link('tel:' + findNumber);
+    //   const numberInLink = str.replace(findNumber, createNumber);
+    //   return numberInLink;
+    // }
+
+    // return str;
+
+    str = str.replace('www.', 'https://');
+
+    function urlify(text) {
+      var urlRegex = /(https?:\/\/[^\s]+)/g;
+      return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+      });
+      // or alternatively
+      // return text.replace(urlRegex, '<a href="$1">$1</a>')
     }
 
-    while (str.indexOf('www') !== -1) {
-      let start = str.indexOf('www');
-      let end = str.indexOf(' ', start + 'www'.length);
-      const findLink = str.substring(start, end);
-      const createLink = findLink.link(findLink);
-      const newStrTwo = str.replace(findLink, createLink);
-      return newStrTwo;
-    }
+    str = urlify(str);
 
-    while (str.indexOf('+') !== -1) {
-      let start = str.indexOf('+');
-      let end = str.indexOf('', start + 13);
-      const findNumber = str.substring(start, end);
-      const createNumber = findNumber.link('tel:' + findNumber);
-      const numberInLink = str.replace(findNumber, createNumber);
-      return numberInLink;
-    }
-
+    str = str.replace(/\n/g, '<br />');
     return str;
   };
 
-  function createMarkup() {
-    return { __html: newText() };
-  }
-
-  function MyComponent() {
-    return <div dangerouslySetInnerHTML={createMarkup()} />;
-  }
-
   return (
-    <div className="event">
-      <header>
-        <div className="time">
-          {/* <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MMM.YYYY')}</span> */}
+    <>
+      <div className="event">
+        <header>
+          <div className="info">
+            {/* <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MMM.YYYY')}</span> */}
 
-          {eventDates.map(date => {
-            return <span key={date}>Дата проведения: {moment(date).format('D MMMM YYYY')}</span>;
-          })}
+            <span className="dates">
+              {eventDates.map((date, i) => {
+                return (
+                  <>
+                    <span key={date}>{moment(date).format('D MMMM')}</span>
+                    {i !== eventDates.length - 1 && ', '}
+                  </>
+                );
+              })}
+            </span>
 
-          {location && <span>Местоположение: {location}</span>}
-        </div>
-        {/* <a href={link} target="_blank" className="source">
-          Источник
-        </a> */}
-      </header>
-      {/* <p>{MyComponent()}</p> */}
-      <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
-      {/* {image.length > 0 ? (
+            {location && (
+              <a
+                className="location"
+                target="_blank"
+                href={`https://yandex.by/maps/minsk?text=${encodeURI(location)}`}
+              >
+                {location}
+              </a>
+            )}
+          </div>
+          <Button
+            onClick={() => {
+              window.open(link);
+            }}
+          >
+            Подробнее
+            {/* {commentsCount !== 0 && `(${commentsCount})`} */}
+          </Button>
+        </header>
+        <p dangerouslySetInnerHTML={{ __html: replaceText(text) }}></p>
+        {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
                 image && <img src={image} />
               )} */}
-      {image && <img src={image} />}
+        {image && <img src={image} />}
+      </div>
 
-      <Button
-        onClick={() => {
-          window.open(link);
-        }}
-      >
-        Подробнее
-        {/* {commentsCount !== 0 && `(${commentsCount})`} */}
-      </Button>
-
-      {isAdmin && renderDateFields()}
-      {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
-    </div>
+      <div className="admin-block">
+        {isAdmin && renderDateFields()}
+        {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
+      </div>
+    </>
   );
 };
 

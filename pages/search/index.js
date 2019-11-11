@@ -50,7 +50,7 @@ const Search = props => {
       </Head>
       <Nav />
 
-      <h3>Мероприятия</h3>
+      <h3>Бесплатные мероприятия</h3>
 
       <div className="header">
         <input
@@ -65,17 +65,21 @@ const Search = props => {
         />
 
         <br />
-        {isLoading ? (
-          <span>Загрузка...</span>
-        ) : !!count ? (
-          <span>Найдено мероприятий: {count}</span>
-        ) : (
-          <span>Ничего не найдено</span>
-        )}
+
+        <div className="search-text">
+          {isLoading ? (
+            <span>Загрузка...</span>
+          ) : !!count ? (
+            <span>Найдено мероприятий: {count}</span>
+          ) : (
+            <span>Ничего не найдено</span>
+          )}
+        </div>
       </div>
 
       {isAdmin && (
         <button
+          className="admin-button"
           onClick={() => {
             localStorage.removeItem('admin');
             setA(false);
@@ -88,7 +92,7 @@ const Search = props => {
       )}
       <div className="events">
         {posts.map((post, i) => {
-          // if (i > 2) {
+          // if (i > 1) {
           //   return null;
           // }
 
