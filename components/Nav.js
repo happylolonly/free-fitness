@@ -7,8 +7,13 @@ const links = [{ href: '/search', label: 'Мероприятия' }].map(link =>
   return link;
 });
 
-const Nav = () => (
+const Nav = ({ toggleMenu, isShowMenu }) => (
   <nav className="nav">
+    <div className={'menu-button ' + (isShowMenu ? 'active' : 'not-active')} onClick={toggleMenu}>
+      <span />
+      <span />
+      <span />
+    </div>
     <ul>
       <li>
         <Link href="/">

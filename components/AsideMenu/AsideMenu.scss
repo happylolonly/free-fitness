@@ -1,0 +1,40 @@
+.menu {
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 320px;
+  height: 100vh;
+  background-color: rgba(255, 125, 90, 1);
+  color: #fff;
+  transition: all 0.7s;
+  overflow: hidden;
+
+  ul {
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    li {
+      background-position: left center;
+      background-repeat: no-repeat;
+
+      a {
+        display: block;
+        box-sizing: border-box;
+        min-height: 60px;
+        color: #fff;
+        text-decoration: none;
+        text-transform: capitalize;
+        font-size: 17px;
+        line-height: 60px;
+
+        &.active {
+          border-right: 2px solid #efba44;
+        }
+      }
+    }
+  }
+}

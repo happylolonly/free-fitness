@@ -6,6 +6,7 @@ import './Search.scss';
 import Head from 'next/head';
 import Event from './Event/Event';
 import Button from '../../components/common/Button/Button';
+import AsideMenu from '../../components/AsideMenu/AsideMenu';
 
 const OFFSET = 10;
 
@@ -15,6 +16,10 @@ const Search = props => {
   const [search, setSearch] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
+  const [isShowMenu, setShowMenu] = useState(false);
+  const toggleMenu = () => {
+    setShowMenu(!isShowMenu);
+  };
 
   useEffect(() => {
     getPosts();
@@ -48,7 +53,8 @@ const Search = props => {
       <Head>
         <title>Бесплатные фитнес мероприятия</title>
       </Head>
-      <Nav />
+      {isShowMenu && <AsideMenu toggleMenu={toggleMenu} />}
+      <Nav toggleMenu={toggleMenu} isShowMenu={isShowMenu} />
 
       <h3>Бесплатные мероприятия</h3>
 
