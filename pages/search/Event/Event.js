@@ -41,14 +41,10 @@ const Event = ({
     setA(localStorage.getItem('admin'));
   }, []);
 
-  console.log(eventDates);
-
   function renderDateFields() {
     const DateTimePicker = require('react-datetime-picker').default; // TODO: async load
     return (
       <div>
-        <h3>Админка</h3>
-
         <h5>Добавить дату к посту</h5>
 
         {eventDates.map((date, i) => {
@@ -134,41 +130,56 @@ const Event = ({
   };
 
   return (
-    <div className="event">
-      <header>
-        <div className="time">
-          {/* <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MMM.YYYY')}</span> */}
+    <>
+      <div className="event">
+        <header>
+          <div className="info">
+            {/* <span>Дата создания: {moment(date * 1000).format('HH:mm DD.MMM.YYYY')}</span> */}
 
-          {eventDates.map(date => {
-            return <span key={date}>Дата проведения: {moment(date).format('D MMMM YYYY')}</span>;
-          })}
+            <span className="dates">
+              {eventDates.map((date, i) => {
+                return (
+                  <>
+                    <span key={date}>{moment(date).format('D MMMM')}</span>
+                    {i !== eventDates.length - 1 && ', '}
+                  </>
+                );
+              })}
+            </span>
 
-          {location && <span>Местоположение: {location}</span>}
-        </div>
-        {/* <a href={link} target="_blank" className="source">
-          Источник
-        </a> */}
-      </header>
-      <p dangerouslySetInnerHTML={{ __html: replaceText(text) }}></p>
-      {/* {image.length > 0 ? (
+            {location && (
+              <a
+                className="location"
+                target="_blank"
+                href={`https://yandex.by/maps/minsk?text=${encodeURI(location)}`}
+              >
+                {location}
+              </a>
+            )}
+          </div>
+          <Button
+            onClick={() => {
+              window.open(link);
+            }}
+          >
+            Подробнее
+            {/* {commentsCount !== 0 && `(${commentsCount})`} */}
+          </Button>
+        </header>
+        <p dangerouslySetInnerHTML={{ __html: replaceText(text) }}></p>
+        {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
                 image && <img src={image} />
               )} */}
-      {image && <img src={image} />}
+        {image && <img src={image} />}
+      </div>
 
-      <Button
-        onClick={() => {
-          window.open(link);
-        }}
-      >
-        Подробнее
-        {/* {commentsCount !== 0 && `(${commentsCount})`} */}
-      </Button>
-
-      {isAdmin && renderDateFields()}
-      {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
-    </div>
+      <div className="admin-block">
+        {isAdmin && renderDateFields()}
+        {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
+      </div>
+    </>
   );
 };
 
