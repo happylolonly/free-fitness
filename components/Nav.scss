@@ -1,20 +1,39 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir, Helvetica, sans-serif;
+}
+
 .nav {
-    flex-wrap: wrap;
-    background: linear-gradient(180deg, #FC805D 0%, #F86478 100%);
+  flex-wrap: wrap;
+  background: linear-gradient(180deg, #fc805d 0%, #f86478 100%);
+  text-align: center;
+  display: flex;
+  padding: 10px 20px;
+  justify-content: space-between;
+  align-items: center;
 
-    a {
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
 
-        &:hover {
-            text-decoration: underline;
-        }
+    &:hover {
+      text-decoration: underline;
     }
+  }
 
-    @media (max-width: 480px) {
-        align-items: center;
-    }
+  ul {
+    display: flex;
+  }
+  nav > ul {
+    padding: 4px 16px;
+  }
+  li {
+    display: flex;
+    padding: 6px 8px;
+  }
 
-
+  @media (max-width: 480px) {
+    align-items: center;
+  }
 }
