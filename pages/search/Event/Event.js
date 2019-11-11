@@ -89,8 +89,8 @@ const Event = ({
               date: eventDates,
               location,
             });
-            await getPosts();
             alert('сохранено');
+            await getPosts(true);
           }}
         >
           Сохранить
