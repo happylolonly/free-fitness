@@ -34,8 +34,6 @@ const Event = ({
     }
   }
 
-  const formattedEntry = text.replace(/\n/g, '<br />');
-
   const [isAdmin, setA] = useState(false);
   const [location, setLocation] = useState(location2);
 
@@ -105,45 +103,35 @@ const Event = ({
     );
   }
 
-  const newText = () => {
+  const replaceText = () => {
     let str = text;
-    while (str.indexOf('http') !== -1) {
-      let start = str.indexOf('http');
-      let end = str.indexOf(' ', start + 'http'.length);
-      const findLink = str.substring(start, end);
-      const createLink = findLink.link(findLink);
-      const newStr = str.replace(findLink, createLink);
-      return newStr;
+    // while (str.indexOf('+') !== -1) {
+    //   let start = str.indexOf('+');
+    //   let end = str.indexOf('', start + 13);
+    //   const findNumber = str.substring(start, end);
+    //   const createNumber = findNumber.link('tel:' + findNumber);
+    //   const numberInLink = str.replace(findNumber, createNumber);
+    //   return numberInLink;
+    // }
+
+    // return str;
+
+    str = str.replace('www.', 'https://');
+
+    function urlify(text) {
+      var urlRegex = /(https?:\/\/[^\s]+)/g;
+      return text.replace(urlRegex, function(url) {
+        return '<a href="' + url + '">' + url + '</a>';
+      });
+      // or alternatively
+      // return text.replace(urlRegex, '<a href="$1">$1</a>')
     }
 
-    while (str.indexOf('www') !== -1) {
-      let start = str.indexOf('www');
-      let end = str.indexOf(' ', start + 'www'.length);
-      const findLink = str.substring(start, end);
-      const createLink = findLink.link(findLink);
-      const newStrTwo = str.replace(findLink, createLink);
-      return newStrTwo;
-    }
+    str = urlify(str);
 
-    while (str.indexOf('+') !== -1) {
-      let start = str.indexOf('+');
-      let end = str.indexOf('', start + 13);
-      const findNumber = str.substring(start, end);
-      const createNumber = findNumber.link('tel:' + findNumber);
-      const numberInLink = str.replace(findNumber, createNumber);
-      return numberInLink;
-    }
-
+    str = str.replace(/\n/g, '<br />');
     return str;
   };
-
-  function createMarkup() {
-    return { __html: newText() };
-  }
-
-  function MyComponent() {
-    return <div dangerouslySetInnerHTML={createMarkup()} />;
-  }
 
   return (
     <div className="event">
@@ -161,8 +149,7 @@ const Event = ({
           Источник
         </a> */}
       </header>
-      {/* <p>{MyComponent()}</p> */}
-      <p dangerouslySetInnerHTML={{ __html: formattedEntry }}></p>
+      <p dangerouslySetInnerHTML={{ __html: replaceText(text) }}></p>
       {/* {image.length > 0 ? (
                 <Slider images={image} />
               ) : (
