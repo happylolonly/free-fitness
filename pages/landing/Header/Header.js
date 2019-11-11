@@ -4,32 +4,7 @@ import Link from 'next/link';
 
 import './Header.scss';
 
-const Header = props => {
-  return (
-    <ul className="header">
-      <li>
-        <Link href="/search">
-          <a>Главная</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/search">
-          <a>Мероприятия</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/search">
-          <a>О нас</a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/search">
-          <a>Контакты</a>
-        </Link>
-      </li>
-    </ul>
-  );
-};
+const Header = props => {};
 
 Header.propTypes = {};
 
