@@ -145,12 +145,12 @@ const Search = ({ events }) => {
 Search.propTypes = {};
 
 Search.getInitialProps = async ({ req }) => {
-  const {
-    headers: { host },
-  } = req;
-  // console.log(req);
+  let host = '';
+  if (req) {
+    host = `http://${req.headers.host}`;
+  }
 
-  const res = await axios.get(`http://${host}/api/events`);
+  const res = await axios.get(`${host}/api/events`);
   return { events: res.data.items };
 };
 
