@@ -4,13 +4,13 @@ body {
 }
 
 .nav {
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 20px;
   // background: linear-gradient(180deg, #fc805d 0%, #f86478 100%);
   text-align: center;
-  display: flex;
-  padding: 10px 20px;
-  justify-content: space-between;
-  align-items: center;
 
   a {
     color: white;
@@ -25,9 +25,11 @@ body {
   ul {
     display: flex;
   }
-  nav > ul {
+
+  nav>ul {
     padding: 4px 16px;
   }
+
   li {
     display: flex;
     padding: 6px 8px;
@@ -35,10 +37,11 @@ body {
 
   .menu-button {
     position: relative;
+    z-index: 3;
     display: none;
+    margin-left: auto;
     width: 32px;
     height: 32px;
-    z-index: 3;
 
     span {
       position: absolute;
@@ -49,7 +52,7 @@ body {
       background: #fff;
     }
 
-    span + span {
+    span+span {
       margin-top: 13px;
     }
   }
@@ -81,7 +84,6 @@ body {
   @media (max-width: 635px) {
     // position: fixed;
     z-index: 1;
-    width: 100%;
 
     .menu-button {
       display: block;
