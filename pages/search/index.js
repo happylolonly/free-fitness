@@ -5,7 +5,7 @@ import Nav from '../../components/Nav';
 import './Search.scss';
 import Head from 'next/head';
 import Event from './Event/Event';
-import Button from '../../components/common/Button/Button';
+import { Button, Loader } from '../../components/common';
 
 const OFFSET = 10;
 
@@ -126,7 +126,9 @@ const Search = props => {
         })}
       </div>
 
-      {count - (offset + OFFSET) >= 0 && (
+      {count - (offset + OFFSET) >= 0 && isLoading ? (
+        <Loader />
+      ) : (
         <Button
           className="load-more"
           onClick={() => {
