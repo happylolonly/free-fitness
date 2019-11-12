@@ -32,7 +32,6 @@ const Textarea = ({ label, placeholder, name, autoFocus, onChange, rows, value, 
         name={name}
         id={name}
         value={value}
-        cols="30"
         autoFocus={autoFocus}
         rows={rows || 5}
         placeholder={placeholder}

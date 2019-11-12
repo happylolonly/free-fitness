@@ -44,14 +44,9 @@ const Nav = () => {
 
         <ul>
           <li>
-            <a
-              href="https://vk.com/im?media=&sel=-129982085"
-              onClick={toggleMenu}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Написать нам
-            </a>
+            <Link href="/feedback">
+              <a onClick={toggleMenu}>Написать нам</a>
+            </Link>
           </li>
           <li>
             <Link href="/new">
