@@ -9,8 +9,8 @@ import { Button, Loader } from '../../components/common';
 
 const OFFSET = 5;
 
-const Search = props => {
-  const [posts, setPosts] = useState([]);
+const Search = ({ events }) => {
+  const [posts, setPosts] = useState(events || []);
   const [count, setCount] = useState(null);
   const [search, setSearch] = useState('');
   const [isLoading, setLoading] = useState(false);
@@ -143,5 +143,15 @@ const Search = props => {
 };
 
 Search.propTypes = {};
+
+Search.getInitialProps = async ({ req }) => {
+  const {
+    headers: { host },
+  } = req;
+  // console.log(req);
+
+  const res = await axios.get(`http://${host}/api/events`);
+  return { events: res.data.items };
+};
 
 export default Search;
