@@ -175,10 +175,12 @@ const Event = ({
         {image && <img src={image} />}
       </div>
 
-      <div className="admin-block">
-        {isAdmin && renderDateFields()}
-        {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
-      </div>
+      {isAdmin && (
+        <div className="admin-block">
+          {isAdmin && renderDateFields()}
+          {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
+        </div>
+      )}
     </>
   );
 };
