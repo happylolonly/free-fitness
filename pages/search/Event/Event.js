@@ -177,8 +177,8 @@ const Event = ({
 
       {isAdmin && (
         <div className="admin-block">
-          {isAdmin && renderDateFields()}
-          {isAdmin && <Button onClick={hideEvent}>скрыть пост</Button>}
+          {renderDateFields()}
+          <Button onClick={hideEvent}>скрыть пост</Button>
         </div>
       )}
     </>
