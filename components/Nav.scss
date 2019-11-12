@@ -35,6 +35,7 @@ body {
 
   .menu-button {
     position: relative;
+    margin-left: auto;
     display: none;
     width: 32px;
     height: 32px;
@@ -81,7 +82,6 @@ body {
   @media (max-width: 635px) {
     // position: fixed;
     z-index: 1;
-    width: 100%;
 
     .menu-button {
       display: block;
