@@ -7,7 +7,7 @@ import Head from 'next/head';
 import Event from './Event/Event';
 import { Button, Loader } from '../../components/common';
 
-const OFFSET = 10;
+const OFFSET = 5;
 
 const Search = props => {
   const [posts, setPosts] = useState([]);

@@ -56,7 +56,7 @@ export default async (req, res) => {
 
   // const Event = mongoose.model('events');
 
-  const { search, limit = 10, offset = 0 } = req.query;
+  const { search, limit = 5, offset = 0 } = req.query;
   const t = search ? await run(search, limit, offset) : await get(limit, offset);
 
   try {
