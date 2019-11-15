@@ -8,12 +8,12 @@ const Footer = props => {
   return (
     <div className="footer">
       <Link>
-        <a>
+        <a target="_blank">
           <img src={require('./images/facebook.svg')} alt="" />
         </a>
       </Link>
       <Link>
-        <a href="https://vk.com/free_fitness_minsk">
+        <a href="https://vk.com/free_fitness_minsk" target="_blank">
           <img src={require('./images/vk.svg')} alt="" />
         </a>
       </Link>
