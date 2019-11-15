@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Head from 'next/head';
 // import Nav from '../components/Nav';
 import Link from 'next/link';
+import About from '../../components/About/About';
+import Footer from '../../components/Footer/Footer';
 
 import './Landing.scss';
 import Header from './Header/Header';
@@ -11,27 +13,31 @@ import Button from '../../components/common/Button/Button';
 
 const Landing = props => {
   return (
-    <div className="landing">
-      <Head>
-        <title>Бесплатный фитнес</title>
-      </Head>
+    <div>
+      <div className="landing">
+        <Head>
+          <title>Бесплатный фитнес</title>
+        </Head>
 
-      {/* <Header /> */}
+        {/* <Header /> */}
 
-      <div className="cube">
-        <div className="intro">
-          <h1>
-            Free <br /> fitness
-          </h1>
-          <h3>
-            У тебя появилась уникальная <br /> возможность заниматься <br /> спортом совершенно
-            бесплатно
-          </h3>
-          <Link href="/search">
-            <Button>Начать</Button>
-          </Link>
+        <div className="cube">
+          <div className="intro">
+            <h1>
+              Free <br /> fitness
+            </h1>
+            <h3>
+              У тебя появилась уникальная <br /> возможность заниматься <br /> спортом совершенно
+              бесплатно
+            </h3>
+            <Link href="/search">
+              <Button>Начать</Button>
+            </Link>
+          </div>
         </div>
       </div>
+      <About />
+      <Footer />
     </div>
   );
 };
