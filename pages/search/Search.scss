@@ -1,7 +1,5 @@
 .search-page {
     padding-bottom: 40px;
-    min-height: 100vh;
-    // background: #eceff0;
 
 
     .admin-menu {
@@ -25,17 +23,17 @@
             min-width: 200px;
             height: 20px;
             outline: none;
-            border: 2px solid white;
+            border: 2px solid #fa706c;
+            // border: 2px solid white;
             border-radius: 4px;
             background-color: transparent;
             color: white;
+            color: #fa706c;
             font-weight: bold;
 
 
             &::placeholder {
-                color: white;
-
-                // color: #fa706c;
+                color: #fa706c;
             }
         }
     }
@@ -46,16 +44,17 @@
     }
 
     .search-text {
-        color: white;
+        color: #fa706c;
+
     }
 
     .load-more {
         display: block;
         margin: 20px auto 0px;
-        // border: 2px solid #fa706c;
-        border: 2px solid white;
+        border: 2px solid #fa706c;
+        // border: 2px solid white;
         color: white;
-        // color: #fa706c;
+        color: #fa706c;
 
     }
 

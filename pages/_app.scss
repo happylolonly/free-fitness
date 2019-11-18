@@ -13,16 +13,14 @@ body {
 .feedback,
 .new-page {
     min-height: 100vh;
-    background: linear-gradient(106.44deg, rgba(255, 125, 90, 0.767) 13.43%, rgba(248, 37, 75, 0.7) 101.27%);
-
-
+    background: linear-gradient(106.44deg, rgba(255, 126, 90, 0.616) 13.43%, rgba(248, 37, 76, 0.575) 101.27%);
+    background: #eceff0;
 
     h3 {
         margin-top: 50px;
-        // color: #fa706c;
-        color: #FFFFFF;
+        color: #fa706c;
         text-align: center;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         font-weight: bold;
         font-size: 32px;
         font-family: Open Sans;
