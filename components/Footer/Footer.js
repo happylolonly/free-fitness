@@ -7,16 +7,12 @@ import './Footer.scss';
 const Footer = props => {
   return (
     <div className="footer">
-      <Link>
-        <a target="_blank">
-          <img src={require('./images/facebook.svg')} alt="" />
-        </a>
-      </Link>
-      <Link>
-        <a href="https://vk.com/free_fitness_minsk" target="_blank">
-          <img src={require('./images/vk.svg')} alt="" />
-        </a>
-      </Link>
+      <a href="https://vk.com/free_fitness_minsk" target="_blank">
+        <img src={require('./images/vk.svg')} alt="" />
+      </a>
+      <a target="_blank" href="https://www.facebook.com/free.fitness.minsk/">
+        <img src={require('./images/facebook.svg')} alt="" />
+      </a>
     </div>
   );
 };
