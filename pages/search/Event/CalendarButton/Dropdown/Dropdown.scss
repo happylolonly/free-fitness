@@ -1,0 +1,30 @@
+.dropdown {
+  position: absolute;
+  width: 100%;
+  right: 50%;
+  transform: translateX(50%);
+
+  .dropdown__link {
+    width: 100%;
+    display: block;
+    background-color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    color: #000;
+    text-align: right;
+    border: solid 0.5px #ccc;
+    outline: none;
+    transition: 0.3s;
+
+    &:not(:first-of-type) {
+      border-top: 0;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: #ccc;
+      color: #000;
+      border-color: transparent;
+    }
+  }
+}
