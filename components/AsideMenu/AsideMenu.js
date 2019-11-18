@@ -9,7 +9,7 @@ const links = [{ href: '/search', label: 'Мероприятия' }].map(link =>
   return link;
 });
 
-const Menu = ({ toggleMenu }) => {
+const Menu = props => {
   return (
     <aside className="menu">
       <ul>
@@ -20,7 +20,7 @@ const Menu = ({ toggleMenu }) => {
         </li>
         {links.map(({ key, href, label }) => (
           <li key={key}>
-            <Link href={href} as={href} onClick={toggleMenu}>
+            <Link href={href} as={href}>
               <a>{label}</a>
             </Link>
           </li>
@@ -29,18 +29,12 @@ const Menu = ({ toggleMenu }) => {
 
       <ul>
         <li>
-          <a
-            href="https://vk.com/im?media=&sel=-129982085"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Написать нам
-          </a>
+          <Link href="/feedback">
+            <a>Написать нам</a>
+          </Link>
         </li>
         <li>
-          <Link href="/new" activeClassName="active" onClick={toggleMenu}>
-            Добавить мероприятие
-          </Link>
+          <Link href="/new">Добавить мероприятие</Link>
         </li>
       </ul>
     </aside>
