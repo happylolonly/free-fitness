@@ -1,28 +1,24 @@
 .feedback {
-  min-height: 100vh;
-  background: linear-gradient(
-    106.44deg,
-    rgba(255, 125, 90, 0.767) 13.43%,
-    rgba(248, 37, 75, 0.7) 101.27%
-  );
 
-  h3 {
-    margin-top: 50px;
-    color: #ffffff;
+  p {
+    margin: 30px 0;
     text-align: center;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 32px;
-    font-family: Open Sans;
   }
 
   form {
     margin: 0 auto;
     padding: 0 20px;
-    text-align: center;
     max-width: 550px;
+    text-align: center;
+
+    textarea {
+      border-color: #fa706c;
+    }
+
     button {
       margin-top: 25px;
+      border-color: #fa706c;
+      color: #fa706c;
     }
   }
 }

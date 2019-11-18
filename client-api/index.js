@@ -12,3 +12,9 @@ export function createEvent(data) {
     ...data,
   });
 }
+
+export function sendFeedback(text) {
+  axios.post('/api/feedback', {
+    text,
+  });
+}

@@ -75,17 +75,23 @@ const Search = ({ events, getEvents, resetSearch }) => {
       </div>
 
       {isAdmin && (
-        <button
-          className="admin-button"
-          onClick={() => {
-            localStorage.removeItem('admin');
-            setA(false);
-            setPosts([]);
-            getPosts();
-          }}
-        >
-          снять права админа
-        </button>
+        <div className="admin-menu">
+          <button
+            className="admin-button"
+            onClick={() => {
+              localStorage.removeItem('admin');
+              setA(false);
+              setPosts([]);
+              getPosts();
+            }}
+          >
+            снять права админа
+          </button>
+
+          <a href="/api/feedback" target="_blank" rel="noopener noreferrer">
+            Обратные связи
+          </a>
+        </div>
       )}
       <div className="events">
         {events.search.ids.map(id => {

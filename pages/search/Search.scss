@@ -3,9 +3,15 @@
     min-height: 100vh;
     // background: #eceff0;
 
-    .admin-button {
-        display: block;
-        margin: 10px auto;
+
+    .admin-menu {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        a {
+            margin-top: 20px;
+        }
     }
 
     .header {

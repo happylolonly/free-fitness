@@ -5,6 +5,7 @@ import Nav from '../../components/Nav';
 
 import { Textarea, Button } from '../../components/common';
 
+import { sendFeedback } from '../../client-api';
 import './Feedback.scss';
 
 const Feedback = () => {
@@ -20,12 +21,13 @@ const Feedback = () => {
     event.preventDefault();
 
     if (!text.length) {
-      setError('Please write something');
+      setError('Пожалуйста, напиши что-нибудь');
       return;
     }
     try {
-      await postUserFeedback(text);
-      close();
+      await sendFeedback(text);
+      changeText('');
+      alert('Cпасибо!');
     } catch (error) {
       setError(JSON.stringify(error));
       console.log(error);
@@ -34,10 +36,19 @@ const Feedback = () => {
 
   return (
     <div className="feedback">
+      <Head>
+        <title>Обратная связь</title>
+      </Head>
+
       <Nav />
-      <h3>Форма обратной связи</h3>
+      <h3>Обратная связь</h3>
+      <p>
+        Нам важно что ты думаешь, расскажи нам!
+        <br />
+        Отправь свое сообщение тут или напиши нам в группах в соц сетях
+      </p>
       <form onSubmit={onSubmit}>
-        <Textarea onChange={onChange} error={error} />
+        <Textarea onChange={onChange} error={error} value={text} />
         <Button>Отправить</Button>
       </form>
     </div>
