@@ -2,33 +2,35 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import './Event.scss';
-import { hidePost, addDate } from '../../../client-api/index';
+import { addDate } from '../../../client-api/index';
 import Button from '../../../components/common/Button/Button';
 import { strictEqual } from 'assert';
 // import DateTimePicker from 'react-datetime-picker/dist/entry.nostyle';
 import Input from '../../../components/common/Input/Input';
+// import CalendarButton from './CalendarButton/CalendarButton';
+// import { CalendarButton } from 'components/CalendarButton/CalendarButton';
+import { connect } from 'react-redux';
+import { getEvents, resetSearch, hideEvent } from '../../../redux/events/actions';
 
-const Event = ({
-  link,
-  image,
-  commentsCount,
-  text = '',
-  date,
-  serverId,
-  location: location2,
-  getPosts,
-  eventDate = [],
-}) => {
+const Event = ({ id, events, hideEvent, getPosts }) => {
   // if (!Array.isArray(eventDate)) {
   //   debugger;
   // }
 
-  const [eventDates, setEventDates] = useState(eventDate);
-  async function hideEvent() {
-    try {
-      await hidePost(serverId);
+  const { text, date, owner_id, comments, attachments, serverData } = events.data[id];
+  const { location: location2 } = serverData;
+  const image =
+    attachments &&
+    attachments.find(att => att.type === 'photo')?.photo.sizes.find(size => size.type === 'x')?.url;
 
-      getPosts();
+  const link = `https://vk.com/free_fitness_minsk?w=wall${owner_id}_${events.data[id].id}`;
+  const commentsCount = (comments && comments.count) || 0;
+
+  const [eventDates, setEventDates] = useState(serverData.date || []);
+  async function hide() {
+    try {
+      await hideEvent(id);
+      alert('Мероприятие скрыто');
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +73,7 @@ const Event = ({
 
         <button
           onClick={() => {
-            setEventDates([...eventDates, new Date()]);
+            setEventDates([...eventDates, new Date().setHours(0, 0, 0, 0)]);
           }}
         >
           Добавить поле
@@ -85,12 +87,12 @@ const Event = ({
         <hr />
         <button
           onClick={async () => {
-            await addDate(serverId, {
+            await addDate(id, {
               date: eventDates,
               location,
             });
-            alert('сохранено');
-            await getPosts(true);
+            alert('Cохранено');
+            // await getPosts(true);
           }}
         >
           Сохранить
@@ -178,7 +180,7 @@ const Event = ({
       {isAdmin && (
         <div className="admin-block">
           {renderDateFields()}
-          <Button onClick={hideEvent}>скрыть пост</Button>
+          <Button onClick={hide}>скрыть пост</Button>
         </div>
       )}
     </>
@@ -187,4 +189,11 @@ const Event = ({
 
 Event.propTypes = {};
 
-export default Event;
+function mapStateToProps({ events }) {
+  return { events };
+}
+
+export default connect(
+  mapStateToProps,
+  { getEvents, resetSearch, hideEvent }
+)(Event);

@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import Nav from '../../components/Nav';
 import './Search.scss';
 import Head from 'next/head';
 import Event from './Event/Event';
 import { Button, Loader } from '../../components/common';
+import { getEvents, resetSearch } from '../../redux/events/actions';
+import { connect } from 'react-redux';
 
 const OFFSET = 5;
 
-const Search = ({ events }) => {
-  const [posts, setPosts] = useState(events || []);
-  const [count, setCount] = useState(null);
+const Search = ({ events, getEvents, resetSearch }) => {
   const [search, setSearch] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [offset, setOffset] = useState(0);
@@ -20,17 +19,14 @@ const Search = ({ events }) => {
     getPosts();
   }, [search, offset]);
 
-  async function getPosts(replace) {
+  async function getPosts() {
     setLoading(true);
+
     try {
-      const responce = await axios.get('/api/events', {
-        params: {
-          search,
-          offset,
-        },
+      await getEvents({
+        search,
+        offset,
       });
-      setPosts(replace ? responce.data.items : [...posts, ...responce.data.items]);
-      setCount(responce.data.count);
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +54,7 @@ const Search = ({ events }) => {
           type="text"
           onChange={event => {
             setSearch(event.target.value);
-            setPosts([]);
+            resetSearch();
             setOffset(0);
           }}
           placeholder="Поиск..."
@@ -70,8 +66,8 @@ const Search = ({ events }) => {
         <div className="search-text">
           {isLoading ? (
             <span>Загрузка...</span>
-          ) : !!count ? (
-            <span>Найдено мероприятий: {count}</span>
+          ) : !!events.search.count ? (
+            <span>Найдено мероприятий: {events.search.count}</span>
           ) : (
             <span>Ничего не найдено</span>
           )}
@@ -92,41 +88,23 @@ const Search = ({ events }) => {
         </button>
       )}
       <div className="events">
-        {posts.map((post, i) => {
+        {events.search.ids.map(id => {
           // if (i > 1) {
           //   return null;
           // }
-
-          const { id, text, date, from_id, owner_id, comments, attachments } = post;
-          const { location } = post.serverData || {};
-          const image =
-            attachments &&
-            attachments
-              .find(att => att.type === 'photo')
-              ?.photo.sizes.find(size => size.type === 'x')?.url;
-
-          const link = `https://vk.com/free_fitness_minsk?w=wall${from_id}_${id}`;
-          const commentsCount = (comments && comments.count) || 0;
-          const serverId = `${owner_id}_${id}`;
-
           return (
             <Event
-              key={i}
-              serverId={serverId}
-              link={link}
-              image={image}
-              getPosts={getPosts}
-              commentsCount={commentsCount}
-              text={text}
-              date={date}
-              eventDate={(post.serverData && post.serverData.date) || []}
-              location={location}
+              key={id}
+              id={id}
+              getPosts={() => {
+                // getPosts();
+              }}
             />
           );
         })}
       </div>
 
-      {count - (offset + OFFSET) >= 0 && isLoading ? (
+      {events.search.count - (offset + OFFSET) >= 0 && isLoading ? (
         <Loader />
       ) : (
         <Button
@@ -144,14 +122,22 @@ const Search = ({ events }) => {
 
 Search.propTypes = {};
 
-Search.getInitialProps = async ({ req }) => {
-  let host = '';
-  if (req) {
-    host = `http://${req.headers.host}`;
-  }
+function mapStateToProps({ events }) {
+  return { events };
+}
 
-  const res = await axios.get(`${host}/api/events`);
-  return { events: res.data.items };
+Search.getInitialProps = async ({ store, req }) => {
+  if (req) {
+    try {
+      await store.dispatch(getEvents({ host: req.headers.host }));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return { events: store.getState().events };
 };
 
-export default Search;
+export default connect(
+  mapStateToProps,
+  { getEvents, resetSearch }
+)(Search);

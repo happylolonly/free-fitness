@@ -69,17 +69,22 @@ export default async (req, res) => {
     const newT = t.items.forEach(vkEvent => {
       const vkE = vkEvent.copy_history ? vkEvent.copy_history[0] : vkEvent;
       const { owner_id, id } = vkE;
+      const vkId = `${owner_id}_${id}`;
       const dbEvent = events.find(event => {
-        return `${owner_id}_${id}` === event.vkId;
+        return vkId === event.vkId;
       });
+
+      vkE.serverData = {};
 
       if (dbEvent) {
         if (dbEvent.status === 'hidden') {
           return;
         }
 
-        vkE.serverData = dbEvent;
+        vkE.serverData = dbEvent.toJSON();
       }
+
+      vkE.serverData.id = vkId;
 
       mergedEvents.push(vkE);
     });
