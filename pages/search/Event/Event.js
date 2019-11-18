@@ -142,7 +142,11 @@ const Event = ({ id, events, hideEvent, getPosts }) => {
               {eventDates.map((date, i) => {
                 return (
                   <>
-                    <span key={date}>{moment(date).format('D MMMM')}</span>
+                    <span key={date}>
+                      {moment(date).format('HH:mm') !== '00:00'
+                        ? moment(date).format('D MMMM в HH:mm')
+                        : moment(date).format('D MMMM')}
+                    </span>
                     {i !== eventDates.length - 1 && ', '}
                   </>
                 );
