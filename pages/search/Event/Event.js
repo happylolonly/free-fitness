@@ -37,7 +37,7 @@ const Event = ({ id, events, hideEvent, getPosts }) => {
   }
 
   const [isAdmin, setA] = useState(false);
-  const [location, setLocation] = useState(location2);
+  const [location, setLocation] = useState(location2 || '');
   const [isAddToCalendarOpen, setAddToCalendar] = useState(false);
 
   useEffect(() => {
