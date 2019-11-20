@@ -25,7 +25,7 @@ def twaManifest = [
     name: 'Бесплатный фитнес', // The name shown on the Android Launcher.
     themeColor: '#fc805d', // The color used for the status bar.
     navigationColor: '#fc805d', // The color used for the navigation bar.
-    backgroundColor: '#2196f3', // The color used for the splash screen background.
+    backgroundColor: '#19d17d', // The color used for the splash screen background.
     enableNotifications: false, // Set to true to enable notification delegation.
     useBrowserOnChromeOS: true, // Set to false if you've added interaction with Android system APIs.
     // Add shortcuts for your app here. Every shortcut must include the following fields:
@@ -47,8 +47,8 @@ android {
         applicationId twaManifest.applicationId
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 3
-        versionName "0.1"
+        versionCode 4
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // The name for the application on the Android Launcher
