@@ -30,7 +30,6 @@ const Event = ({ id, events, hideEvent, getPosts }) => {
   async function hide() {
     try {
       await hideEvent(id);
-      alert('Мероприятие скрыто');
     } catch (error) {
       console.log(error);
     }
@@ -199,7 +198,4 @@ function mapStateToProps({ events }) {
   return { events };
 }
 
-export default connect(
-  mapStateToProps,
-  { getEvents, resetSearch, hideEvent }
-)(Event);
+export default connect(mapStateToProps, { getEvents, resetSearch, hideEvent })(Event);
