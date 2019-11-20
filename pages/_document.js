@@ -12,7 +12,7 @@ class MyDocument extends Document {
         <Head>
           {/* <title>Бесплатный фитнес</title> */}
           <meta charSet="utf-8" />
-          <link rel="shortcut icon" href="/images/school-chalao-gym.png" />
+          <link rel="shortcut icon" href="/images/icon.png" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#fc805d" />
 
@@ -21,17 +21,16 @@ class MyDocument extends Document {
           <meta name="description" content="Все бесплатные фитнес мероприятия в одном месте!" />
           <meta
             name="keywords"
-            content="бесплатный фитнес, бесплатные тренировки в минске, йога, пилатес, танцы, степ, аэробика, воркаут"
+            content="бесплатный фитнес, бесплатные тренировки в минске, йога, пилатес, танцы, степ, аэробика, воркаут, тренировки, бесплатный фитнес беларусь, растяжка, пробежки"
           />
 
           <meta property="og:type" content="website" />
-          <meta property="og:title" content="Бесплатный фитнес" />
+          <meta property="og:title" content="Бесплатный фитнес в Беларуси" />
           <meta
             property="og:description"
             content="Все бесплатные фитнес мероприятия в одном месте!"
           />
-          {/* <meta property="og:url" content="https://thehoop.us" /> */}
-          <meta property="og:image" content="/images/favicon.ico" />
+          <meta property="og:image" content="/images/fitness.jpg" />
 
           {/* <!-- Google Tag Manager --> */}
           <script
